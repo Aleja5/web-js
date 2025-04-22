@@ -210,6 +210,20 @@ body{
     padding-top: 25px;
 }
 
+/* Ajuste para mostrar correctamente los sliders al cambiar de pestaña */
+.tabs .tab {
+    display: none;
+}
+
+.tabs input[type="radio"]:checked ~ .tab {
+    display: block;
+}
+
+/* Asegurar que los sliders sean visibles */
+.mySwiper-2 {
+    display: block;
+}
+
 .tabs input[type="radio"] {
     display: none;
 }
