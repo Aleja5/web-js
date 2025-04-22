@@ -126,6 +126,9 @@ body{
 .header-content {
     margin-top: 200px;
     padding: bottom 50px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
 }
 
 .slider {
@@ -336,9 +339,24 @@ info-txt h2 {
     background-color: #ab1c15;
 }
 
+/* Ajuste para la sección "Horario" */
 .horario {
-    padding: 100px 0px;
+    padding: 100px 0;
     background-color: #0d0d0d;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilo para el enlace de anclaje */
+.horario-info {
+    scroll-margin-top: 100px; /* Ajusta el desplazamiento para evitar que el encabezado cubra la sección */
+}
+
+.horario-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 .horario-info h2 {
