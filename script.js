@@ -86,4 +86,32 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.mySwiper-2').forEach(function(swiper, index) {
         swiper.style.display = index === 0 ? 'block' : 'none';
     });
+
+    // Desplazamiento suave para los enlaces del navbar
+    document.querySelectorAll('a[href^="#"]').forEach(enlace => {
+        enlace.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Funcionalidad del botón "Volver arriba"
+    const botonVolverArriba = document.createElement('button');
+    botonVolverArriba.textContent = '↑';
+    botonVolverArriba.id = 'volverArriba';
+    botonVolverArriba.style.display = 'none';
+    botonVolverArriba.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.body.appendChild(botonVolverArriba);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            botonVolverArriba.style.display = 'block';
+        } else {
+            botonVolverArriba.style.display = 'none';
+        }
+    });
 });
