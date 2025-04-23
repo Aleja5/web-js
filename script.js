@@ -114,4 +114,106 @@ document.addEventListener('DOMContentLoaded', function() {
             botonVolverArriba.style.display = 'none';
         }
     });
+
+    const cart = [];
+    const generateInvoiceButton = document.getElementById('generate-invoice');
+    const modal = document.getElementById('invoice-modal');
+    const closeButton = document.querySelector('.close-button');
+    const invoiceItems = document.getElementById('invoice-items');
+    const invoiceTotal = document.getElementById('invoice-total');
+
+    // Abrir la ventana modal
+    generateInvoiceButton.addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('El carrito está vacío.');
+            return;
+        }
+
+        // Limpiar contenido previo
+        invoiceItems.innerHTML = '';
+        let total = 0;
+
+        // Agregar productos al modal
+        cart.forEach((item, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Eliminar';
+            removeButton.classList.add('remove-item');
+            removeButton.addEventListener('click', function() {
+                cart.splice(index, 1);
+                updateInvoice();
+            });
+
+            listItem.appendChild(removeButton);
+            invoiceItems.appendChild(listItem);
+            total += item.price;
+        });
+
+        invoiceTotal.textContent = total.toFixed(2);
+        modal.style.display = 'block';
+    });
+
+    // Cerrar la ventana modal
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Función para actualizar la factura
+    function updateInvoice() {
+        invoiceItems.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Eliminar';
+            removeButton.classList.add('remove-item');
+            removeButton.addEventListener('click', function() {
+                cart.splice(index, 1);
+                updateInvoice();
+            });
+
+            listItem.appendChild(removeButton);
+            invoiceItems.appendChild(listItem);
+            total += item.price;
+        });
+
+        invoiceTotal.textContent = total.toFixed(2);
+    }
+
+    // Agregar productos al carrito con confirmación
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            const productName = this.getAttribute('data-name');
+            const productPrice = parseFloat(this.getAttribute('data-price'));
+
+            const userConfirmed = confirm(`¿Quieres agregar ${productName} al carrito?`);
+            if (userConfirmed) {
+                cart.push({ name: productName, price: productPrice });
+                alert(`${productName} ha sido agregado al carrito.`);
+            } else {
+                alert(`${productName} no fue agregado al carrito.`);
+            }
+        });
+    });
+
+    // Lógica para el botón "Finalizar Compra"
+    const finalizePurchaseButton = document.getElementById('finalize-purchase');
+
+    finalizePurchaseButton.addEventListener('click', function() {
+        alert('Compra finalizada. Puedes pasar a la caja por tu compra o espera en tu mesa que tus productos llegarán pronto.');
+        modal.style.display = 'none';
+        cart.length = 0; // Vaciar el carrito después de finalizar la compra
+        updateInvoice();
+    });
 });
