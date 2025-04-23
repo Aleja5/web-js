@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicialización de los sliders principales
     var swiper1 = new Swiper(".mySwiper-1", {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Inicialización de los sliders de productos
     var swiper2 = new Swiper(".mySwiper-2", {
         slidesPerView: 3,
         spaceBetween: 20,
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Lógica para cambiar entre pestañas de productos
     let tabInputs = document.querySelectorAll('.tabInput');
 
     tabInputs.forEach(function(input){
@@ -97,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Funcionalidad del botón "Volver arriba"
+    // Botón "Volver arriba" para desplazarse al inicio de la página
     const botonVolverArriba = document.createElement('button');
     botonVolverArriba.textContent = '↑';
     botonVolverArriba.id = 'volverArriba';
@@ -115,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Lógica del carrito de compras
     const cart = [];
     const generateInvoiceButton = document.getElementById('generate-invoice');
     const modal = document.getElementById('invoice-modal');
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const invoiceItems = document.getElementById('invoice-items');
     const invoiceTotal = document.getElementById('invoice-total');
 
-    // Abrir la ventana modal
+    // Abrir la ventana modal de la factura
     generateInvoiceButton.addEventListener('click', function() {
         if (cart.length === 0) {
             alert('El carrito está vacío.');
