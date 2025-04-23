@@ -189,6 +189,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         invoiceTotal.textContent = total.toFixed(2);
+
+        // Verificar si el carrito está vacío después de actualizar
+        if (cart.length === 0) {
+            modal.style.display = 'none';
+        }
     }
 
     // Agregar productos al carrito con confirmación
@@ -211,6 +216,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const finalizePurchaseButton = document.getElementById('finalize-purchase');
 
     finalizePurchaseButton.addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('El carrito está vacío. No puedes finalizar la compra.');
+            return;
+        }
+
         alert('Compra finalizada. Puedes pasar a la caja por tu compra o espera en tu mesa que tus productos llegarán pronto.');
         modal.style.display = 'none';
         cart.length = 0; // Vaciar el carrito después de finalizar la compra

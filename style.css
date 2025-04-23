@@ -553,6 +553,31 @@ info-txt h2 {
     cursor: pointer;
 }
 
+/* Estilo para el botón "Agregar al carrito" */
+.add-to-cart {
+    background-color: #DB241B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize; /* Cambiar de mayúsculas a capitalización */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart:hover {
+    background-color: #ab1c15;
+    transform: scale(1.05);
+}
+
+.add-to-cart:active {
+    background-color: #8a1a12;
+    transform: scale(0.95);
+}
+
 @media(max-width: 991px) {
     .menu {
         padding: 20px;
